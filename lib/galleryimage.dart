@@ -68,14 +68,18 @@ class _GalleryImageState extends State<GalleryImage> {
   }
 
   @override
+  void didUpdateWidget(covariant GalleryImage oldWidget) {
+    _buildItemsList(widget.imageUrls);
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return galleryItems.isEmpty
         ? const EmptyWidget()
         : GridView.builder(
             primary: false,
-            itemCount: galleryItems.length > 3
-                ? widget.numOfShowImages
-                : galleryItems.length,
+            itemCount: galleryItems.length > 3 ? widget.numOfShowImages : galleryItems.length,
             padding: widget.padding,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: widget.childAspectRatio,
@@ -123,8 +127,7 @@ class _GalleryImageState extends State<GalleryImage> {
               child: Center(
                 child: Text(
                   "+${galleryItems.length - index}",
-                  style: widget.textStyleOfNumberWidget ??
-                      const TextStyle(color: Colors.white, fontSize: 40),
+                  style: widget.textStyleOfNumberWidget ?? const TextStyle(color: Colors.white, fontSize: 40),
                 ),
               ),
             ),
@@ -136,8 +139,7 @@ class _GalleryImageState extends State<GalleryImage> {
 
 // Check if item is last image in grid to view image or number
   bool _isLastItem(int index) {
-    return index < galleryItems.length - 1 &&
-        index == widget.numOfShowImages - 1;
+    return index < galleryItems.length - 1 && index == widget.numOfShowImages - 1;
   }
 
 // to open gallery image in full screen
