@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:galleryimage/app_cached_network_image.dart';
 
 import 'gallery_item_model.dart';
